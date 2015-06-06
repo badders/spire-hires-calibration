@@ -1,0 +1,33 @@
+\subsection{Types of Observation}
+
+This project has concentrated on an observation of a a single spiral galaxy at very low inclination. Performing the same analysis on observations of other types of galaxies and galaxies at other inclinations would give a broader picture of how HiRes works under differing circumstances.
+
+Additionally, looking at how HiRes works on observations of inside our own galaxy. It would be expected that HiRes would behave in a different manner on more diffuse sources. A different criteria would also need to be established for how we define SNR in this case, as peak signal to noise would likely not be as useful a measurement.
+
+All the analysis performed for this project has been done only at the long wavelength band of the SPIRE observations ($500 \units{\mu m}$). It would also be required to perform the same tests at the other wavelengths SPIRE observes, although the methods would be identical, and the implementation for this project has taken this into account so that the pipeline will work at all wavelengths.
+
+\subsection{Beyond Doubling}
+
+The primary assumption throughout this project has been that HiRes will provide improvements of a factor of two to the angular resolution. While this has shown to be accurate at lower signal to noise regimes, it would seem likely that this would improve as the SNR increases. Performing more analysis at this higher SNR regime would be useful. This could be done in two ways, firstly with the data already generated, the same analysis could be performed at a smaller aperture around the peak signal. Secondly observations with an innate higher SNR could also be analyzed.
+
+As shown in the pixel difference analysis, the RMS pixel differnce approahces a stable value as SNR increase, when compared to the double resolution beam. At higher SNR this would be expected to diverge again as the resolution improvement actually increases above the factor of two.
+
+Where I have doubled the resolution of the beam for the generation of truth images, to perform this analysis I would need to generate truth images based on smaller beams.
+
+\subsection{SNR}
+
+While the results I have presented give a SNR regime where HiRes is suitable, how those SNR values are determined is important for automating this in the creation of data products in the Herschel science archive. It may be that peak SNR can be automated and used for extra galactic observations such as M74 as used in this project, however for other types of observations, especially more diffuse objects this may not make sense. It may be that extra criteria are needed, such as how much of an observation likes within some SNR values, or looking further at other criteria such as properties of the power spectra not analyzed in this project.
+
+\subsection{Proposed Continuation}
+
+I will be continuing this project as a summer intern in the department, in order to arrive at a complete set of criteria and procedures so that the SPIRE Post-Operations Team can determine when HiRes is suitable for use throughout the data archive obtained by the Herschel Space Observatory. The plan for this would be as follows:
+\begin{enumerate}
+    \item{Generate test data for a larger set of observations and each wavelength}
+    \item{Perform the difference analysis as described here}
+    \item{Attempt to determine resolution increase limits at higher SNR}
+    \item{Determine a method for determining SNR automatically on any observation}
+\end{enumerate}
+
+While it may again prove impossible to obtain a useful indicator of image resolution from the power spectra, it has been shown in this project that image differences can be used effectively so it seems likely this will be the primary method used for determining image fidelity, and this would be possible in the short window of time before September 2015.
+
+HiRes is an iterative technique, and one area that has not been explored in this project is changing the default number of iterations used for an observation. While I found a degradation in fidelity of low SNR sources run through HiRes, it may be that with a reduced number of iterations a small improvement can be achieved. On very high SNR sources it also stands to reason that increasing the number of iterations my improve the output maps. If time allows, this may be an area that can also be explored during the internship, otherwise sticking to the default number of twenty iterations will have to be assumed correct.

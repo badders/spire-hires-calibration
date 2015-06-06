@@ -1,0 +1,42 @@
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\scriptsize\ttfamily,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+  basicstyle=\small,
+}
+
+\providecommand{\pycodesection}[3]{
+\subsection{#1}
+\pycode{#2}{#3}
+}
+
+\providecommand{\pycode}[2]{
+  \lstinputlisting[title=#2, breaklines=true, numbers=left, tabsize=4,language=Python]{#1}
+}
+
+\providecommand{\configfile}[1]{
+  \lstinputlisting[breaklines=true, numbers=left, tabsize=4]{#1}
+}
+
+\section{Code Listings}
+\pycodesection{Shared Routines}{code/common.py}{common.py}
+\pycodesection{Generation of Truth Images}{code/spitzer.py}{spitzer.py}
+\pycodesection{Analysis of Spectra}{code/spectra_resolution.py}{spectra\_resolution.py}
+\pycodesection{Spectra unit calibration}{code/make_gauss.py}{make\_gauss.py}
+\pycode{code/fft_calibration.py}{fft\_calibration.py}
+\pycode{code/fft_calibration_run.py}{fft\_calibration\_run.py}
+\pycodesection{Image differences}{code/differences.py}{differences.py}
+\pycodesection{M74 Figures}{code/plot_m74.py}{plot\_m74.py}
+\pycodesection{Beam Analysis}{code/beam_analysis.py}{beam\_analysis.py}
+\pycodesection{Black Body Plots}{bbfig.py}{bbfig.py}
+\break
+\pycodesection{Other Figures}{code/other_plots.py}{other\_plots.py}

@@ -1,0 +1,119 @@
+\documentclass[a4paper]{article}
+
+\usepackage[intlimits]{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage[margin=1.3in]{geometry}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage{abstract}
+\usepackage{multicol}
+\usepackage{float}
+
+\citestyle{apalike}
+\bibliographystyle{apalike}
+
+\providecommand{\e}[1]{\times10^{#1}}
+\providecommand{\units}[1]{\;\mathrm{#1}}
+\providecommand{\data}[2]{$#1\units{#2}$}
+\providecommand{\diff}[2]{\frac{\partial #1}{\partial #2}}
+\providecommand{\ddiff}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\providecommand{\tdiff}[2]{\frac{\mathrm{d} #1}{\mathrm{d} #2}}
+\providecommand{\infint}[2]{\int\limits_{-\infty}^{\infty}{#1}\;\mathrm{d}#2}
+\providecommand{\dd}{\;\mathrm{d}}
+\providecommand{\MAA}{\text{\AA}}
+\providecommand{\abs}[1]{\left| #1 \right|} % for absolute value
+\providecommand{\avg}[1]{\left< #1 \right>} % for average
+\providecommand{\grad}[1]{\gv{\nabla} #1} % for gradient
+\let\divsymb=\div
+\renewcommand{\div}[1]{\gv{\nabla} \cdot #1} % for divergence
+\providecommand{\curl}[1]{\gv{\nabla} \times #1} % for curl
+\providecommand{\MAA}{\text{\AA}}
+\providecommand{\figwidth}{.45\columnwidth}
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
+\numberwithin{equation}{section}
+
+\setlength\columnsep{14pt}
+
+\renewcommand{\bibname}{References}
+
+\title{Characterising Interstellar Dust with Herschel-SPIRE\thanks{{\it Herschel} is an ESA space observatory with science instruments provided by European-led Principal Investigator consortia and with important participation from NASA.}: \\ \large{Evaluation of a super-resolution technique for high signal to noise SPIRE maps}}
+\author{Tom Badran}
+
+\date{September 2014 to May 2015}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+\input{abstract}
+\end{abstract}
+
+\tableofcontents
+
+\listoffigures
+%\listoftables
+\break
+\begin{multicols}{2}
+\raggedcolumns
+
+\section{Introduction}
+\input{objectives}
+
+\input{introduction}
+
+\section{Computer modeling simulated sources}
+\input{truth}
+
+\section{Quantifying HiRes improvements in image fidelity}
+
+\subsection{SNR}
+To determine the signal to noise ratios (equation \ref{SNR}) in the simulated maps, I have taken a peak signal to noise of the image, where the peak is defined as the 99th percentile of information and the noise is the root mean square pixel value of the background as defeined by an annulus outside the galaxy.
+\begin{equation}
+    SNR = \frac{Signal}{Noise}
+    \label{SNR}
+\end{equation}
+
+\subsection{Analysing Power Spectra}
+\input{spectra}
+
+\subsection{HiRes beam}
+
+As well as generating a super-resolution map, the HiRes software routines also return a beam file. It was hopped that the returned beam may provide some indication of how HiRes has performed. To investigate this I measured the full-width half maximum of the returned beam in the hopes that this would be smaller for the higher SNR simulated observations. However this turned out not to be the case, and in fact the FWHM of the returned beam was identical for each of the source observations.
+
+\subsection{Image Differences}
+\input{differences}
+
+\section{Conclusions}
+
+While analyzing the power spectra and beam profiles returned by HiRes didn't reveal any useful information, I did successfully develop a methodology for determining how effective HiRes has been on a simulated observation. The measuring of RMS pixel differences of both simulated and HiRes imags from a synthetic truth image proved a very successful method for obtaining whether HiRes has had a significant improvement over the unprocessed simulated observation.
+
+I have also obtained  a value of approximately \textgreater30 for the peak SNR at which HiRes produces maps of a higher fidelity. Although this number will require refining as the analysis is expanded into shorter wavelengths and other observation types.
+
+So in summary I have identified both a practical method, and a possible value of SNR for which HiRes would be suitable to use by default on a SPIRE observation in the Herschel data archive. There are however more questions to answer, and further study required before this can applied practically as part of the data processing pipeline.
+
+\section{Future Work}
+\input{future}
+
+\section{Acknowledgments}
+
+As well as using the HIPE tools \citep{HIPE} much of the useful Astropy library \citep{robitaille2013astropy} was used to simplify the programming. The matplotlib library \citep{Hunter:2007} was used for figure generation, and the numpy and scipy libraries \citep{van2011numpy} were used for data analysis and processing.
+
+\end{multicols}
+
+\bibliography{references}
+
+\break
+\appendix
+\addcontentsline{toc}{section}{Appendices}
+
+\input{listings}
+
+\end{document}
